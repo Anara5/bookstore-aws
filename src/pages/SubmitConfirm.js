@@ -8,7 +8,7 @@ const SubmitConfirm = ({ orderSubmitted }) => {
 
     useEffect(() => {
         if (!orderSubmitted) {
-          navigate('/');
+          navigate("/");
         }
       }, [orderSubmitted, navigate]);
 
@@ -17,7 +17,7 @@ const SubmitConfirm = ({ orderSubmitted }) => {
             <img src={cat} alt="Animated Emoji" style={{ width: '20rem', height: '20rem' }} />
             <h1>Thank you for your order!</h1>
             <p>You will get an email with order details.</p>
-            <p style={{color: "grey", fontSize: "13px"}}>Please check your emails spam folder as well in case.</p>
+            <p style={{color: "grey", fontSize: "13px"}}>Please check your emails spam folder as well in case if email is not .</p>
         </div>
     )
 }
