@@ -39,4 +39,4 @@ The frontend is implemented using React JS, accompanied by additional tech tools
 
 ### Deployment
 
-The project is deployed on AWS. You can access the deployed project [here](<insert your deployment link>).
+The project is deployed on AWS. You can access the deployed project [here](<https://prod.d2qdwj4bs05kdb.amplifyapp.com>).
