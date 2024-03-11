@@ -39,4 +39,4 @@ The frontend is implemented using React JS, accompanied by additional tech tools
 
 ### Deployment
 
-The project is deployed on AVercel. You can access the deployed project [here](https://bookstore-aws-anara5.vercel.app).
+The project is deployed on Vercel. You can access the deployed project [here](https://bookstore-aws-anara5.vercel.app).
