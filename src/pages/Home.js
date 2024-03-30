@@ -18,7 +18,7 @@ const Home = () => {
     };
     
     return (
-        <>
+        <div className="home">
             <div className="home-page">
                 <Hero />
             </div>
@@ -48,7 +48,7 @@ const Home = () => {
                 </Modal>
                 )}
             </section>
-        </>  
+        </div>  
     )
 }
 

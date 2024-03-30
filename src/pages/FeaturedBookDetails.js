@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import { BookContext } from "../context/books";
 import swish from "../assets/swish.png";
-import awsConfig from '../aws-exports';
-const sdk = require('aws-sdk');
+import { generateS3Url } from './../utils/awsUtils';
 
 const FeaturedBookDetails = ({ id, imageUrl }) => {
   const { featured } = useContext(BookContext);
@@ -22,29 +21,31 @@ const FeaturedBookDetails = ({ id, imageUrl }) => {
 
   const handleDownload = async () => {
     try {
-      const s3 = new sdk.S3({
-        region: 'eu-north-1',
-        credentials: {
-          accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
-          secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY
-        },
-      });
-      const bucketName = awsConfig.aws_user_files_s3_bucket;
-      const objectKey = 'public/' + pdfdoc;
-      const response = await s3.getObject({ Bucket: bucketName, Key: objectKey }).promise();
-  
-      const blob = new Blob([response.Body], { type: 'application/pdf' });
+      // Fetch the file from the S3 bucket
+      const response = await fetch(generateS3Url(pdfdoc));
+
+      // Check if the response is successful (status code 200)
+      if (!response.ok) {
+        throw new Error('Failed to download file');
+      }
+
+      // Extract the blob content from the response
+      const blob = await response.blob();
+
+      // Create a temporary link element to trigger the file download
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
       link.download = fileNameWithoutUuid;
       document.body.appendChild(link);
       link.click();
+
+      // Clean up: remove the link element
       document.body.removeChild(link);
     } catch (error) {
       console.error('Error downloading file:', error);
     }
   };
-  
+
   return (
     <section className="book-details">
       <div className="detail-image">

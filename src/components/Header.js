@@ -34,7 +34,7 @@ const Header = () => {
                     <li>
                         <Link to="/cart" className={`cart-icon ${showStars ? 'animate' : ''}`}>
                             <FiBook /> 
-                            <span className="cart-count">{cartItemCount}</span>
+                            <span className="cart-count">cart: {cartItemCount}</span>
                             {showStars && (
                                 <div className="star-splash-container">
                                     {[1, 2, 3].map((index) => (
